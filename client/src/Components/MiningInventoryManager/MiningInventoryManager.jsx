@@ -122,7 +122,6 @@ const MiningInventoryManager = () => {
             response = await axios.get(`${backendUrl}/inventory/${formattedLocation}`);
         }
 
-        // console.log("Response data: ", response.data);
         setInventory(response.data);
 
     } catch (error) {
@@ -137,7 +136,6 @@ const MiningInventoryManager = () => {
   const fetchResources = async () => {
     try {
       const response = await axios.get(`${backendUrl}/resources`);
-      // console.log("Form data: ", response.data)
       setResources(response.data);
     } catch (error) {
       console.error("Error fetching resources:", error);
@@ -212,6 +210,16 @@ const MiningInventoryManager = () => {
     }
   };
 
+  const handleLocationChange = (e) => {
+    const newLocation = e.target.value;
+    setSelectedLocation(newLocation);
+    localStorage.setItem('selectedLocation', newLocation);
+
+    const formattedLocation = newLocation.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/inventory-manager/${formattedLocation}`);
+  };
+  
+
   const getAggregatedData = (data) => {
     const aggregatedData = {};
   
@@ -261,7 +269,7 @@ const MiningInventoryManager = () => {
     return (
       <div key={title} className="inventory-table" id={formattedTitle}>
         <div className="table-title">
-          {title}{" "}
+          {title.toUpperCase()}{" "}
           <button className="copy-btn" onClick={() => onCopyButtonClick(title)}>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </button>
@@ -282,7 +290,7 @@ const MiningInventoryManager = () => {
               <th>Last Updated</th>
               <th>Updated By</th>
               <th>Resource Status </th>
-              <th>Edit / Delete Resource</th>
+              <th>Edit / Delete </th>
             </tr>
           </thead>
           <tbody>
@@ -396,17 +404,6 @@ const MiningInventoryManager = () => {
     );
   };
 
-  const handleLocationChange = (e) => {
-    const newLocation = e.target.value;
-    setSelectedLocation(newLocation);
-    localStorage.setItem('selectedLocation', newLocation);
-
-    // Navigate to the new location route
-    const formattedLocation = newLocation.toLowerCase().replace(/\s+/g, '-');
-    navigate(`/inventory-manager/${formattedLocation}`);
-  };
-  
-
   return (
     <div className={`inventory-manager ${focusedTable ? 'focused' : ''}`} 
       style={{
@@ -419,18 +416,15 @@ const MiningInventoryManager = () => {
         <div className="button-container">
           {selectedLocation !== "LOCATION TOTAL" && (
             <>
-              <button className="btn-populate" onClick={handleOpen}>
+              <button className="add-btn" onClick={handleOpen}>
                 Add Inventory +
               </button>
-              {/* <button className="btn-add" disabled>
-                Edit Calculation
-              </button> */}
             </>
           )}
         </div>
 
         <div className="dropdown-container">
-          <select value={selectedLocation} onChange={handleLocationChange}>
+          <select value={selectedLocation} onChange={handleLocationChange} className="select-location">
             {locations.map((location, index) => (
               <option key={index} value={location}>{location}</option>
             ))}

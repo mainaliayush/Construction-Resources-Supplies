@@ -21,12 +21,12 @@ h1 {
 }
 
 .add-btn {
-  background-color: #0d0d0d; /* Green background */
+  background-color: #0d0d0d; 
   color: white;
   border: none;
   padding: 15px 20px;
   margin: 0px 0px;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -34,8 +34,8 @@ h1 {
 .copy-btn,
 .edit-btn,
 .delete-btn {
-  background: #ffffff; /* White background */
-  border: 1px solid #ccc; /* Light border */
+  background: #ffffff; 
+  border: 1px solid #ccc; 
   font-size: 18px;
   cursor: pointer;
   margin: 1px;
@@ -45,19 +45,59 @@ h1 {
 .copy-btn {
   background: none;
   border: none;
-  color: #000000; /* Blue for copy button */
+  color: #000000; 
 }
 
 .edit-btn {
-  color: #000000; /* Green for edit button */
+  color: #000000; 
   padding: 2px 5px;
   border-radius: 5px;
 }
 
 .delete-btn {
-  color: #f44336; /* Red for delete button */
+  color: #f44336; 
   padding: 1.3px 5px;
   border-radius: 5px;
+}
+
+.resource-table {
+  width: 100%;
+  overflow-x: auto; 
+  display: block;
+  max-width: 100%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; 
+}
+
+.resource-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px; 
+  table-layout: auto;
+}
+
+.resource-table th {
+  background-color: rgb(227, 227, 227);
+  color: rgb(33, 33, 33);
+  padding: 12px;
+  text-align: center;
+  font-weight:bold;
+  font-size: 15px;
+  border-top: 2px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(132, 132, 132);
+  white-space: nowrap;
+}
+
+.resource-table td {
+  padding: 5px 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.resource-table tr {
+  background-color: #f9f9f9;
 }
 
 .resource-manager.focused::before {
@@ -67,7 +107,7 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2); 
+  background: rgba(15, 15, 15, 0.767); 
   z-index: 10;
   pointer-events: none;
 }
@@ -77,8 +117,45 @@ h1 {
   z-index: 20;
   padding: 5px 12px;
   border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  transform: scale(1.05);  
+  transform: scale(1.02);  
   opacity: 1.8;
+}
+
+.resource-table.focused th {
+  background-color: rgb(170, 170, 170);
+  font-size: medium;
+  color: rgb(30, 30, 30); 
+}
+
+/* Responsive adjustments for the table */
+@media (max-width: 1024px) {
+  .resource-manager{
+    padding: 20px 0px;
+  }
+  .resource-table {
+    overflow-x: auto;
+    display: block;
+  }
+  .resource-table table {
+    min-width: 100%;
+  }
+  .resource-table th {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .resource-table td {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-btn {
+    width: 95%;
+    padding: 15px 25px;
+    font-size: 16px;
+  }
 }

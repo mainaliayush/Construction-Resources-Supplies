@@ -74,11 +74,10 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
     }
   }, [editingResource]);
 
-  // console.log("Formdata: ", formData)
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    console.log(`Input Changed: ${name} = ${value}`); // Debugging line
+    console.log(`Input Changed: ${name} = ${value}`); 
 
     setFormData((prevData) => ({
         ...prevData,
@@ -86,20 +85,8 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
     }));
 };
 
-
-  // const handleFileChange = (e) => {
-  //   const files = e.target.files;
-  //   if (files && files.length > 0) {
-  //       setFormData((prevData) => ({
-  //           ...prevData,
-  //           images: files, 
-  //       }));
-  //   }
-  // };
-
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
-    // console.log("formDataToSend: ", formDataToSend)
 
     Object.keys(formData).forEach((key) => {
       if (key === "images" && formData.images) {
@@ -117,7 +104,6 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
     try {
       if (editingResource) {
         console.log("editingResource: ", editingResource)
-        // console.log("formDataToSend: ", formDataToSend)
 
         await axios.put(
           `${backendUrl}/resources/${editingResource.id}`,
@@ -174,11 +160,10 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
         <button className="close-btn" onClick={handleClose}>&times;</button>
       </div>
 
-      <DialogContent dividers sx={{ borderColor: "#ccc" }}>
+      <DialogContent dividers sx={{ borderColor: "#ccc", padding: "0px", borderRadius: "0px"}}>
 
-        {/* ITEM INFO SECTION */}
         <div className="section">
-          <div className="section-title">Item Detail</div>
+          {/* <div className="section-title">Item Detail</div> */}
           <div className="form-row">
             <div className="form-group">
               <label>Resource Name <span>*</span></label>
@@ -236,7 +221,7 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
             </div>
           </div>
 
-          <div className="form-row" style={{gap:"0px"}}>
+          <div className="form-row">
             <div className="form-row" >
               <div className="form-group">
                 <label>Measurement Unit <span>*</span></label>
@@ -251,13 +236,13 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
               </div>
               <div className="form-group">
                 <label>Order Quantity</label>
-                <input name="qtyPerRing" placeholder ="0" value={formData.qtyPerRing} onChange={handleChange} style={{maxWidth:"80%"}}/>
+                <input name="qtyPerRing" placeholder ="0" value={formData.qtyPerRing} onChange={handleChange}/>
               </div>
             </div>
-            <div className="form-row" style={{marginLeft:"0px", gap:"70px"}}>
+            <div className="form-row">
               <div className="form-group" >
                 <label>Order for Later</label>
-                <select name="isQuantized" value={formData.isQuantized?.toString()} onChange={handleChange} style={{width:"150%"}} >
+                <select name="isQuantized" value={formData.isQuantized?.toString()} onChange={handleChange} >
                   {/* <option value="">Select</option> */}
                   <option value="True">True</option>
                   <option value="False">False</option>
@@ -265,7 +250,7 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
               </div>
               <div className="form-group">
                 <label>OrderItemsManually</label>
-                <select name="manualOrderQty" value={formData.manualOrderQty?.toString()} onChange={handleChange} style={{width:"125%"}}>
+                <select name="manualOrderQty" value={formData.manualOrderQty?.toString()} onChange={handleChange}>
                   {/* <option value="">Select</option> */}
                   <option value="True">True</option>
                   <option value="False">False</option>
@@ -294,7 +279,7 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
 
         {/* VENDOR AND OTHER INFO SECTION */}
         <div className="section">
-          <div className="section-title">Supplier Detail</div>
+          {/* <div className="section-title">Supplier Detail</div> */}
           <div className="form-row">
             <div className="form-group">
               <label>Supplier</label>
@@ -330,7 +315,7 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
         </div>
 
         <div className="section">
-          <div className="section-title"> Image</div>
+          {/* <div className="section-title"> Image</div> */}
 
           {formData.images && (
             <div className="image-name">

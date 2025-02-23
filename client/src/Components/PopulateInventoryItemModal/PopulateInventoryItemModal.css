@@ -1,10 +1,9 @@
-/* Modal Header */
 .populate-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3px 8px;
-  background-color: rgb(218, 218, 218);
+  padding: 0px 8px;
+  background-color: rgb(238, 238, 238);
   color: rgb(80, 80, 80);
   box-shadow: #777;
 }
@@ -12,14 +11,7 @@
 .populate-modal-title {
   font-size: 18px;
   font-weight: bold;
-}
-
-.populate-close-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
+  margin: 0;
 }
 
 /* Form Styling */
@@ -27,16 +19,17 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .populate-label {
   font-size: 14px;
   font-weight: 500;
-  color: #fff;
+  color: #333;
 }
 
 .populate-select {
-  padding: 8px;
+  padding: 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
   background: #fff;
@@ -55,11 +48,6 @@
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.populate-btn-submit:disabled {
-  background: #777;
-  cursor: not-allowed;
 }
 
 .populate-btn-close {
@@ -82,10 +70,66 @@
 
 .populate-btn-submit:disabled {
   background-color: #0051ff !important;
-  color: #ddd; 
-  opacity: 0.6; 
-  cursor: not-allowed; 
-  pointer-events: none; 
+  color: #ddd;
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
   transition: opacity 0.3s, background-color 0.3s;
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .populate-modal-title {
+    font-size: 16px;
+  }
+
+  .populate-select {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .populate-btn-close,
+  .populate-btn-submit {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .populate-form-group {
+    gap: 8px;
+  }
+
+  .populate-close-btn {
+    font-size: 20px;
+  }
+
+  /* Adjust dialog width for mobile */
+  .MuiDialog-paper {
+    max-width: 90% !important; /* Ensure it doesn't take full width */
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+  .populate-modal-title {
+    font-size: 14px;
+  }
+
+  .populate-select {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .populate-btn-close,
+  .populate-btn-submit {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  .populate-form-group {
+    gap: 6px;
+  }
+
+  .populate-close-btn {
+    font-size: 18px;
+  }
+}

@@ -1,39 +1,53 @@
-.inventory-manager,
-.inventory-manager2 {
-  background-color: #ffffff; /* Light background */
-  color: #333; /* Dark text color */
-  min-height: 100vh;
+.inventory-manager {
+  /* text-align: center; */
   height: auto;
+  background-color: #ececec; 
+  color: #333; 
   padding: 20px;
-  margin: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-width: 100%;
-  position: relative;
 }
 
 .controls-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 15px auto;
-  gap: 10px;
-  width: 100%;
-  max-width: 98%;
+  flex-wrap: wrap;
+  gap: 16px; 
+  padding: 16px;
+}
+
+.table-title {
+  text-align: left;
+  display: flex;
+  font-weight: bold;
+  text-transform: uppercase;
+  align-items: center;
+  margin-left: 5px;
+  color: white;
+  margin-top: 30px;
 }
 
 .button-container {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex: 1 1 auto;
+}
+
+.add-btn {
+  background-color: #000000; 
+  border: 2px solid rgb(71, 71, 71) !important;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  margin: 0px 0px;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .dropdown-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 15px;
-  align-items: flex-end;
+  /* margin-bottom: 15px; */
+  /* align-items: flex-end; */
   margin-left: auto;
   margin-right: 0;
 }
@@ -73,23 +87,6 @@
   color: #ffffff; /* Blue for copy button */
 }
 
-.btn-add,
-.btn-populate {
-  background-color: #1ac757; /* Green background */
-  color: rgb(16, 16, 16);
-  border: none;
-  padding: 10px 15px;
-  margin: 0px 0px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.btn-add:hover,
-.btn-populate:hover {
-  background-color: #29d732; /* Darker green for hover */
-}
-
 .btn-save {
   background-color: #f44336; /* Red background */
   color: white;
@@ -103,70 +100,55 @@
   background-color: #d32f2f; /* Darker red for hover */
 }
 
-.btn-add:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .ioh-input, .min-qty-input, .tgt-qty-input {
   width: 70px;
-  padding: 3px;
-  border: 1px solid #ccc; /* Lighter border */
+  padding: 8px 4px;
+  border: 1px solid #ccc;
   border-radius: 4px;
   text-align: right;
-  font-size: 14px;
+  font-size: 12.5px;
 }
 
-
-.table-title {
-  text-align: left;
-  display: flex;
-  font-weight: bold;
-  text-transform: uppercase;
-  align-items: center;
-  margin-left: 5px;
-  color: white;
-  margin-top: 30px;
-}
-
-table {
+.inventory-table {
   width: 100%;
-  table-layout: fixed;
+  overflow-x: auto; 
+  display: block;
+  max-width: 100%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; 
+}
+
+.inventory-table table {
+  width: 100%;
   border-collapse: collapse;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  min-width: 900px; 
+  table-layout: auto;
 }
 
-th {
-  border-bottom: 1px solid rgb(210, 210, 210);
-  font-size: 12px;
-  padding: 8px 12px;
+.inventory-table th {
+  background-color: rgb(227, 227, 227);
+  color: rgb(33, 33, 33);
+  padding: 12px;
   text-align: center;
-  background-color: #ececec; 
-  color: rgb(31, 31, 31); 
+  font-weight:bold;
+  font-size: 14px;
+  border-top: 2px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(132, 132, 132);
+  word-wrap: break-word;
 }
 
-td {
-  border-bottom: 0.5px solid rgb(230, 228, 228);
-  font-size: 12px;
-  padding: 8px 12px;
+.inventory-table td {
+  padding: 5px 8px;
   text-align: center;
-  white-space: normal;
-  word-break: break-word;
-  background-color: #ffffff; 
-  font-weight: 400;
-  color: #333; 
+  border-bottom: 1px solid #ddd;
+  word-wrap: break-word;
+  font-size: 12.5px;
 }
 
-.info-icon {
-  color: #007bff; /* Blue icon */
-  margin-left: 5px;
-  cursor: pointer;
+.inventory-table tr {
+  background-color: #f9f9f9;
 }
 
-.info-icon:hover {
-  color: #0056b3; /* Darker blue on hover */
-}
 
 .status-cell {
   white-space: normal;
@@ -177,21 +159,20 @@ td {
 }
 
 .status-available {
-  color: #18ab1f; /* Green text */
+  color: #18ab1f; 
   text-transform: capitalize;
 }
 
 .status-stale-data {
-  color: #f44336; /* Red text */
+  color: #f44336; 
   text-transform: capitalize;
 }
 
 .status-need-to-reorder {
-  color: #f44336; /* Red text */
+  color: #f44336; 
   text-transform: capitalize;
 }
 
-.inventory-manager2.focused::before,
 .inventory-manager.focused::before {
   content: '';
   position: fixed;
@@ -199,30 +180,71 @@ td {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2); /* Lighten overlay */
+  background: rgba(15, 15, 15, 0.767); 
   z-index: 10;
   pointer-events: none;
 }
 
-.inventory-table.focused {
+.inventory-manager.focused {
   position: relative;
   z-index: 20;
   padding: 5px 12px;
   border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease, box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  transform: scale(1.05);  
+  transform: scale(1.02);  
   opacity: 1.8;
 }
 
-.background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.9; 
-  z-index: -1;
+.inventory-table.focused {
+  background-color: rgb(170, 170, 170);
+  font-size: medium;
+  color: rgb(30, 30, 30); 
+}
+
+/* Responsive adjustments for the table */
+@media (max-width: 1024px) {
+  .inventory-manager{
+    padding: 20px 0px;
+  }
+  .inventory-table {
+    overflow-x: auto;
+    display: block;
+  }
+  .inventory-table table {
+    min-width: 100%;
+  }
+  .inventory-table th {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .inventory-table td {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .add-btn {
+    width: 95%;
+    padding: 10px 12px;
+    font-size: 17px;
+  }
+
+  .controls-container{
+    gap: 5px;
+  }
+
+  .dropdown-container select {
+    background-color: #ffffff; 
+    color: #333; 
+    text-align: center;
+    padding: 9px;
+    width: 98%;
+    max-width: 550px;
+    border-radius: 4px;
+    border: 2px solid rgb(107, 107, 107) !important;
+  }
 }

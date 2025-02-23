@@ -12,11 +12,10 @@ const Navbar = () => {
 
   const navigateTo = isResourceManager ? '/inventory-manager' : '/resource-manager';
   const linkText = isResourceManager ? 'To Inventory  ' : 'To Resources  ';
-  // const pageTitle = isInventoryManager ? 'INVENTORY MANAGER' : 'RESOURCE MANAGER';
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">🛠️🛠️ Inventory Locations 🔩🔩</div>
+      <div className="navbar-logo">🛠️ <span className='logo-span'>INVENTORY LOCATIONS</span> 🔩</div>
       <Link to={navigateTo} className="navbar-link">
         {linkText}
         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />

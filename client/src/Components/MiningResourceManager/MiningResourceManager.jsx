@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashCan, faCopy, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import AddResourceMiningPopup from "../AddResourceMiningPopup/AddResourceMiningPopup";
 import bgImage from './bg-resource.jpeg'
+// import bgImage from './image.jpg'
+
 import "./MiningResourceManager.css";
 
 
@@ -158,7 +160,7 @@ const MiningResourceManager = () => {
               <td>{item.vendor}</td>
               <td>{item.vendor_product_no}</td>
               <td>{item.lead_time_weeks}</td>
-              <td>{item.unit_cost}</td>
+              <td>$ {item.unit_cost}</td>
               <td>
                 <button className="edit-btn" onClick={() => handleEdit(item)}>
                   {/* <FontAwesomeIcon icon={faEdit} /> */}

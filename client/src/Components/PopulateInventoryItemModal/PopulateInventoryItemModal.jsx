@@ -29,15 +29,12 @@ const PopulateInventoryItemModal = ({ open, handleClose, resources, onSubmit }) 
         "& .MuiPaper-root": {
           borderRadius: "8px",
           position: "absolute",
-          top: "15%",
-          left: "50%",
-          transform: "translate(-50%, 0)",
+          top: "10%",
         },
       }}
     >
       <div className="populate-modal-header">
         <DialogTitle className="populate-modal-title">Add Inventory to Location</DialogTitle>
-        <button className="populate-close-btn" onClick={handleClose}>&times;</button>
       </div>
 
       <DialogContent dividers sx={{ borderColor: "#ccc" }}>

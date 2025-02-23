@@ -20,5 +20,5 @@ router.get("/image/:filename", (req, res) => {
       res.sendFile(imagePath); 
     });
   });
-  
+
 export default router;

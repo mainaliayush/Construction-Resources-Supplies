@@ -36,6 +36,6 @@ server.use('/resources', resourceRoutes);
 server.use('/inventory', inventoryRoutes);
 
 
-server.listen(port, () => {
+server.listen(PORT, () => {
   console.log(`✅ Server running at: http://localhost:${PORT}!!`);
 });

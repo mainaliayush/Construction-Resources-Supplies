@@ -13,7 +13,7 @@ import { faPencil, faTrash, faArrowUpRightFromSquare } from "@fortawesome/free-s
 
 const MiningInventoryManager = () => {
 
-  const backendUrl = "https://your-backend-app.herokuapp.com";
+  const backendUrl = "https://resource-manager-e8d52038f36b.herokuapp.com";
 
   const [modalOpen, setModalOpen] = useState(false);
   const [resourceModalOpen, setResourceModalOpen] = useState(false);

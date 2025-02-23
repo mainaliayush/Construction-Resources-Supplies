@@ -5,7 +5,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/
 import "./AddResourceMiningPopup.css";
 
 const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResources }) => {
-  const backendUrl = "https://your-backend-app.herokuapp.com";
+  const backendUrl = "https://resource-manager-e8d52038f36b.herokuapp.com";
 
   const [formData, setFormData] = useState({
     name: "",

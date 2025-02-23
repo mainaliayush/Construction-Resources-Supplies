@@ -13,9 +13,8 @@ const server = express();
 const PORT = process.env.PORT || 3001;
 
 server.use(cors({
-  origin: ['http://localhost:3000', 'https://inventory-location.netlify.app'], 
+  origin: '*', 
 }));
-
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true })); 

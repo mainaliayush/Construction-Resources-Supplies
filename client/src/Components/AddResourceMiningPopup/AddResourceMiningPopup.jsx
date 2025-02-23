@@ -5,6 +5,8 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/
 import "./AddResourceMiningPopup.css";
 
 const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResources }) => {
+  const backendUrl = "https://your-backend-app.herokuapp.com";
+
   const [formData, setFormData] = useState({
     name: "",
     partNumber: "",
@@ -118,14 +120,14 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
         // console.log("formDataToSend: ", formDataToSend)
 
         await axios.put(
-          `http://localhost:3001/resources/${editingResource.id}`,
+          `${backendUrl}/resources/${editingResource.id}`,
           formDataToSend,
           { headers: { "Content-Type": "multipart/form-data" } }
         );
 
       } else {
         await axios.post(
-          "http://localhost:3001/resources/",
+          `${backendUrl}/resources/`,
           formDataToSend,
           { headers: { "Content-Type": "multipart/form-data" } }
         );

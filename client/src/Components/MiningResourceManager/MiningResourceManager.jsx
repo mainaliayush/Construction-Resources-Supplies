@@ -8,6 +8,9 @@ import "./MiningResourceManager.css";
 
 
 const MiningResourceManager = () => {
+
+  const backendUrl = "https://your-backend-app.herokuapp.com";
+
   const [modalOpen, setModalOpen] = useState(false);
   const [resources, setResources] = useState([]);
   const [editingResource, setEditingResource] = useState(null);
@@ -71,7 +74,7 @@ const MiningResourceManager = () => {
 
   const fetchResources = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/resources");
+      const response = await axios.get(`${backendUrl}/resources`);
       setResources(response.data);
     } catch (error) {
       console.error("Error fetching resources:", error);
@@ -86,7 +89,7 @@ const MiningResourceManager = () => {
     if (!window.confirm("Are you sure you want to delete this resource?")) return;
   
     try {
-      await axios.delete(`http://localhost:3001/resources/${id}`);
+      await axios.delete(`${backendUrl}/resources/${id}`);
       setResources(resources.filter((resource) => resource.id !== id)); 
     } catch (error) {
       console.error("Error deleting resource:", error);

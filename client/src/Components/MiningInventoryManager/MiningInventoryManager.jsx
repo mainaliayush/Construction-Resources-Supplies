@@ -13,6 +13,8 @@ import { faPencil, faTrash, faArrowUpRightFromSquare } from "@fortawesome/free-s
 
 const MiningInventoryManager = () => {
 
+  const backendUrl = "https://your-backend-app.herokuapp.com";
+
   const [modalOpen, setModalOpen] = useState(false);
   const [resourceModalOpen, setResourceModalOpen] = useState(false);
   const [editingResource, setEditingResource] = useState(null);
@@ -93,7 +95,7 @@ const MiningInventoryManager = () => {
     const payload = { resourceId, location: formattedLocation, ioh, min_qty, target_qty, last_audit, audited_by };
   
     try {
-      const response = await axios.post(`http://localhost:3001/inventory`, payload);
+      const response = await axios.post(`${backendUrl}/inventory`, payload);
       const inventoryData = response.data;
 
       console.log("Response from backend:", inventoryData);
@@ -113,11 +115,11 @@ const MiningInventoryManager = () => {
         let response;
 
         if (selectedLocation === "LOCATION TOTAL") {
-            response = await axios.get(`http://localhost:3001/inventory`);
+            response = await axios.get(`${backendUrl}/inventory`);
             console.log("Total: ", response)
         } else {
             const formattedLocation = selectedLocation.replace(/\s+/g, '_');
-            response = await axios.get(`http://localhost:3001/inventory/${formattedLocation}`);
+            response = await axios.get(`${backendUrl}/inventory/${formattedLocation}`);
         }
 
         // console.log("Response data: ", response.data);
@@ -134,7 +136,7 @@ const MiningInventoryManager = () => {
 
   const fetchResources = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/resources");
+      const response = await axios.get(`${backendUrl}/resources`);
       // console.log("Form data: ", response.data)
       setResources(response.data);
     } catch (error) {
@@ -158,7 +160,7 @@ const MiningInventoryManager = () => {
     if (!window.confirm("Are you sure you want to delete this resource?")) return;
 
     try {
-        await axios.delete(`http://localhost:3001/inventory/${id}`);
+        await axios.delete(`${backendUrl}/inventory/${id}`);
         console.log(`Deleted item with ID: ${id}`);
         fetchInventoryByLocation();
     } catch (error) {
@@ -183,7 +185,7 @@ const MiningInventoryManager = () => {
     try {
         const today = new Date().toISOString().split("T")[0];
 
-        await axios.put(`http://localhost:3001/inventory/${id}`, {
+        await axios.put(`${backendUrl}/inventory/${id}`, {
             [field]: value,
             last_audit: today,
         });

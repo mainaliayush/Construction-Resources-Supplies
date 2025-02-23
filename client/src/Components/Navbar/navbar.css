@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  font-weight: 300 !important;
+  background-color: rgb(21, 21, 21);
+  /* color: #333; Dark text color */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+}
+
+.navbar-logo {
+  font-size: 25px;
+  font-weight:500;
+  color: rgb(255, 255, 255); 
+}
+
+.navbar-link {
+  color: #ececec;
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-right: 30px;
+}
+
+.navbar-link:hover {
+  color: #bababa; 
+}

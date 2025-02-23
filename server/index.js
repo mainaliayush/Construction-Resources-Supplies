@@ -10,7 +10,7 @@ import inventoryRoutes from './routes/inventoryRoutes.js';
 dotenv.config();
 
 const server = express();
-const PORT = process.env.PORT || 13099;
+const PORT = process.env.PORT || 3001;
 
 server.use(cors());
 server.use(express.json());

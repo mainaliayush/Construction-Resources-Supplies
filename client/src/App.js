@@ -10,18 +10,23 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Navigate to="/inventory-manager" />} />
         <Route path="/resource-manager" element={<MiningResourceManager />} />
 
-        <Route 
-          path="/inventory-manager" 
-          element={<Navigate to="/inventory-manager/location-total" />} 
-        />
+        <Route path="/inventory-manager" element={<Navigate to="/inventory-manager/location-total" />} />
 
         <Route path="/inventory-manager" element={<MiningInventoryManager />} />
+
         <Route path="/inventory-manager/:location" element={<MiningInventoryManager />} />
 
+      </Routes> */}
+      <Routes>
+        <Route path="/" element={<Navigate to="/inventory-manager" />} />
+        <Route path="/resource-manager" element={<MiningResourceManager />} />
+        
+        <Route path="/inventory-manager" element={<Navigate to="/inventory-manager/location-total" />} />
+        <Route path="/inventory-manager/:location" element={<MiningInventoryManager />} />
       </Routes>
     </Router>
   );

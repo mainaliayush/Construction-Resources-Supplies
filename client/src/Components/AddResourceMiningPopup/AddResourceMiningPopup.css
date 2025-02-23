@@ -166,6 +166,15 @@ input[type="file"]::file-selector-button:hover {
   padding: 0px 8px 8px 4px;
 }
 
+.image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 10px;
+  margin-left: 10px; 
+  border-radius: 8px; 
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .modal-title {
@@ -221,5 +230,101 @@ input[type="file"]::file-selector-button:hover {
   .btn-submit {
     font-size: 12px; 
     padding: 6px 10px; 
+  }
+}
+
+.image-upload-container {
+  padding: 20px;
+}
+
+.image-preview-section {
+  display: flex;
+  align-items: center;  /* Aligns image and buttons in the center vertically */
+  gap: 15px; /* Adds spacing between image and buttons */
+}
+
+.image-preview {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.upload-image-btn, .delete-image-btn, .cancel-image-btn {
+  padding: 5px 10px;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-stack {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Space between the buttons */
+}
+
+.upload-image-btn {
+  background-color: rgb(233, 233, 233);
+  border: 1px solid rgb(165, 165, 165);
+  color: rgb(48, 48, 48);
+}
+
+.delete-image-btn {
+  background-color: rgb(62, 53, 53);
+  color: white;
+  border: none;
+}
+
+.cancel-image-btn {
+  background-color: rgb(221, 221, 221);
+  color: rgb(73, 73, 73);
+  border: 1px solid rgb(186, 186, 186);
+}
+
+/* Styling for buttons when hovered */
+.upload-btn:hover, .delete-btn:hover, .cancel-btn:hover {
+  opacity: 0.8;
+}
+
+/* Section for upload input */
+.upload-input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.upload-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.upload-input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .image-upload-container {
+    padding: 15px;
+  }
+
+  .image-preview {
+    max-width: 90%;
+  }
+
+  .upload-input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .upload-btn, .delete-btn, .cancel-btn {
+    font-size: 12px;
+    padding: 8px 16px;
   }
 }

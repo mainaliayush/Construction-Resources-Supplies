@@ -30,13 +30,12 @@
   flex: 1 1 auto;
 }
 
-.add-btn {
+.inventory-add-btn {
   background-color: #000000; 
   border: 2px solid rgb(71, 71, 71) !important;
   color: white;
   border: none;
   padding: 15px 20px;
-  margin: 0px 0px;
   font-size: 22px;
   cursor: pointer;
   border-radius: 5px;
@@ -46,19 +45,19 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  /* margin-bottom: 15px; */
-  /* align-items: flex-end; */
   margin-left: auto;
   margin-right: 0;
 }
 
 .dropdown-container select {
+  /* appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none; */
   background-color: #ffffff; 
   color: #333; 
   text-align: center;
   padding: 8px;
-  width: 400px;
-  max-width: 550px;
+  width: 500px;
   border-radius: 4px;
 }
 
@@ -84,11 +83,13 @@
 }
 
 .copy-btn {
-  color: #ffffff; /* Blue for copy button */
+  color: #ffffff; 
+  cursor: pointer;
+  font-size: 18px;
 }
 
 .btn-save {
-  background-color: #f44336; /* Red background */
+  background-color: #f44336;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -97,7 +98,7 @@
 }
 
 .btn-save:hover {
-  background-color: #d32f2f; /* Darker red for hover */
+  background-color: #d32f2f; 
 }
 
 .ioh-input, .min-qty-input, .tgt-qty-input {
@@ -128,13 +129,13 @@
 
 .inventory-table th {
   background-color: rgb(255, 255, 255);
-  color: rgb(33, 33, 33);
+  color: rgb(35, 35, 35);
   padding: 12px;
   text-align: center;
   font-weight:bold;
   font-size: 14px;
   border-top: 2px solid rgb(211, 211, 211);
-  border-bottom: 1px solid rgb(132, 132, 132);
+  border-bottom: 1px solid rgb(162, 162, 162);
   word-wrap: break-word;
 }
 
@@ -227,7 +228,7 @@
 }
 
 @media (max-width: 768px) {
-  .add-btn {
+  .inventory-add-btn {
     width: 95%;
     padding: 15px 10px;
     font-size: 17px;

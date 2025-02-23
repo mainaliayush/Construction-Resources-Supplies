@@ -28,6 +28,12 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
     images: null,
   });
 
+  console.log("Editing Resource: ", editingResource)
+
+  const [imagePreview, setImagePreview] = useState(formData?.images || ""); 
+  const [isReuploading, setIsReuploading] = useState(false);
+  const [imageDeleted, setImageDeleted] = useState(false);
+
   useEffect(() => {
     if (editingResource) {
       setFormData({
@@ -50,6 +56,16 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
         description: editingResource.description || "",
         images: editingResource.images || null,
       });
+
+      if (editingResource.images) {
+          if (typeof editingResource.images === "string") {
+              setImagePreview(`${backendUrl}/${editingResource.images}`);
+          } else {
+              setImagePreview(null);
+          }
+      } else {
+          setImagePreview(null);
+      }
     } else {
       setFormData({
         name: "",
@@ -71,19 +87,32 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
         description: "",
         images: null,
       });
+      setImagePreview(null);
     }
   }, [editingResource]);
 
-
+  
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
-    console.log(`Input Changed: ${name} = ${value}`); 
 
-    setFormData((prevData) => ({
-        ...prevData,
-        [name]: type === "file" ? files : value,
-    }));
-};
+    if (type === "file") {
+        const file = files[0];
+        if (file) {
+            setFormData((prevData) => ({
+                ...prevData,
+                images: files,
+            }));
+            setImagePreview(URL.createObjectURL(file)); 
+
+            setImageDeleted(false);
+        }
+    } else {
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    }
+  };
 
   const handleSubmit = async () => {
     const formDataToSend = new FormData();
@@ -150,8 +179,12 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
     }
   };
 
-  // console.log("Form Data: ", formData)
-  
+  const handleDeleteImage = () => {
+    setImagePreview(null); 
+    setFormData((prevData) => ({ ...prevData, images: null }));
+    setImageDeleted(true);
+  };
+
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="" fullWidth sx={{ "& .MuiPaper-root": { borderRadius: "8px" } }}>
@@ -277,7 +310,6 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
           </div>
         </div>
 
-        {/* VENDOR AND OTHER INFO SECTION */}
         <div className="section">
           {/* <div className="section-title">Supplier Detail</div> */}
           <div className="form-row">
@@ -314,22 +346,50 @@ const AddResourceMiningPopup = ({ open, handleClose, editingResource, fetchResou
           </div>
         </div>
 
-        <div className="section">
-          {/* <div className="section-title"> Image</div> */}
+        <div className="image-upload-container">
 
-          {formData.images && (
-            <div className="image-name">
-              {typeof formData.images === "string" ? formData.images : formData.images.name}
+        {!editingResource && !imagePreview && (
+            <>
+              <input 
+                type="file" 
+                name="images" 
+                onChange={handleChange} 
+                className="upload-input"
+              />
+            </>
+          )}
+
+          {imagePreview && !isReuploading && !imageDeleted && (
+            <div className="image-preview-section">
+              <img src={imagePreview} alt="Preview" className="image-preview" />
+              <div className="button-stack">
+                <button className="upload-image-btn" onClick={() => setIsReuploading(true)}>
+                  Re-Upload
+                </button>
+                <button className="delete-image-btn" onClick={handleDeleteImage}>
+                  Remove
+                </button>
+              </div>
             </div>
           )}
-          
-          <input 
-            type="file" 
-            name="images" 
-            onChange={handleChange}
-          />
-        
+
+          {isReuploading && (
+            <div className="upload-input-section">
+              <input type="file" name="images" className="upload-input" onChange={handleChange} />
+              <button className="cancel-image-btn" onClick={() => setIsReuploading(false)}>
+                Cancel
+              </button>
+            </div>
+          )}
+
+          {imageDeleted && !isReuploading && (
+            <div className="upload-input-section">
+              <input type="file" name="images" className="upload-input" onChange={handleChange} />
+            </div>
+          )}
         </div>
+
+
 
       </DialogContent>
 

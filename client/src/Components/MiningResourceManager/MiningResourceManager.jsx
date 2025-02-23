@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faTrashCan, faCopy, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrash, faCopy, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import AddResourceMiningPopup from "../AddResourceMiningPopup/AddResourceMiningPopup";
 import bgImage from './bg-resource.jpeg'
 // import bgImage from './image.jpg'
@@ -164,12 +164,10 @@ const MiningResourceManager = () => {
                 <td>$ {item.unit_cost}</td>
                 <td>
                   <button className="edit-btn" onClick={() => handleEdit(item)}>
-                    {/* <FontAwesomeIcon icon={faEdit} /> */}
-                    ✎
+                    <FontAwesomeIcon icon={faPencil} />
                   </button>
                   <button className="delete-btn" onClick={() => handleDelete(item.id)}>
-                    {/* <FontAwesomeIcon icon={faTrashCan} /> */}
-                    ❌ 
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
               </tr>
@@ -191,7 +189,7 @@ const MiningResourceManager = () => {
       }}
       >
       {/* <h1> Resources Management Dashboard</h1> */}
-      <button className="add-btn" onClick={handleOpen}>
+      <button className="resource-add-btn" onClick={handleOpen}>
         Add Resource +
       </button>
       <AddResourceMiningPopup open={modalOpen} handleClose={handleClose} editingResource={editingResource} fetchResources={fetchResources}/>

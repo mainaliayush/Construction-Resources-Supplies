@@ -308,13 +308,17 @@ const MiningInventoryManager = () => {
                     type="number"
                     className="ioh-input"
                     value={editableIoH[item.id] ?? item.ioh ?? ""}
+                    min="0"
                     onChange={(e) => {
-                      const newValue = e.target.value;
+                      let newValue = e.target.value;
+                      if (parseFloat(newValue) < 0) {
+                        newValue = "0"; // Prevent negative input
+                      }
                       setEditableIoH((prev) => ({ ...prev, [item.id]: newValue }));
                       updateInventoryItem(item.id, "ioh", newValue);
                     }}
                     onBlur={(e) => {
-                      const formattedValue = parseFloat(e.target.value).toFixed(2);
+                      const formattedValue = Math.max(0, parseFloat(e.target.value) || 0).toFixed(2);
                       setEditableIoH((prev) => ({ ...prev, [item.id]: formattedValue }));
                     }}
                   />
@@ -322,7 +326,7 @@ const MiningInventoryManager = () => {
                   parseFloat(item.ioh)?.toFixed(2) ?? "0.00"
                 )}
               </td>
-            
+
               <td>
                 {Number.isNaN(parseFloat(editableIoH[item.id] ?? item.ioh) / parseFloat(item.qty_per_ring))
                   ? "0.00"
@@ -335,13 +339,17 @@ const MiningInventoryManager = () => {
                     type="number"
                     className="min-qty-input"
                     value={editableMinQty[item.id] ?? item.min_qty ?? ""}
+                    min="0"
                     onChange={(e) => {
-                      const newValue = e.target.value;
+                      let newValue = e.target.value;
+                      if (parseFloat(newValue) < 0) {
+                        newValue = "0"; // Prevent negative input
+                      }
                       setEditableMinQty((prev) => ({ ...prev, [item.id]: newValue }));
                       updateInventoryItem(item.id, "min_qty", newValue);
                     }}
                     onBlur={(e) => {
-                      const formattedValue = parseFloat(e.target.value).toFixed(2);
+                      const formattedValue = Math.max(0, parseFloat(e.target.value) || 0).toFixed(2);
                       setEditableMinQty((prev) => ({ ...prev, [item.id]: formattedValue }));
                     }}
                   />
@@ -386,13 +394,11 @@ const MiningInventoryManager = () => {
             
               <td>
                 <button className="edit-btn" onClick={() => handleEdit(item)}>
-                  {/* <FontAwesomeIcon icon={faPencil} /> */}
-                  ✎
+                  <FontAwesomeIcon icon={faPencil} />
                 </button>
                 {selectedLocation !== "LOCATION TOTAL" && (
                   <button className="delete-btn" onClick={() => handleDelete(item.id)}>
-                    {/* <FontAwesomeIcon icon={faTrash} /> */}
-                    ❌ 
+                    <FontAwesomeIcon icon={faTrash} />
                   </button>
                 )}
               </td>
@@ -418,7 +424,7 @@ const MiningInventoryManager = () => {
         <div className="button-container">
           {selectedLocation !== "LOCATION TOTAL" && (
             <>
-              <button className="add-btn" onClick={handleOpen}>
+              <button className="inventory-add-btn" onClick={handleOpen}>
                 Add Inventory +
               </button>
             </>

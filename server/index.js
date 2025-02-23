@@ -13,7 +13,7 @@ const server = express();
 const PORT = process.env.PORT || 3001;
 
 server.use(cors({
-  origin: '*', 
+  origin: 'https://inventory-location.netlify.app', 
 }));
 
 server.use(express.json());

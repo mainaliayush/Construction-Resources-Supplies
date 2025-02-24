@@ -267,13 +267,14 @@ const MiningInventoryManager = () => {
     const finalData = isLocationTotal ? getAggregatedData(data) : data;
     
     return (
-      <div key={title} className="inventory-table" id={formattedTitle}>
+      <>
         <div className="table-title">
           {title.toUpperCase()}{" "}
           <button className="copy-btn" onClick={() => onCopyButtonClick(title)}>
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </button>
         </div>
+      <div key={title} className="inventory-table" id={formattedTitle}>
         <table>
           <thead>
             <tr>
@@ -401,6 +402,7 @@ const MiningInventoryManager = () => {
           </tbody>
         </table>
       </div>
+      </>
     );
   };
 

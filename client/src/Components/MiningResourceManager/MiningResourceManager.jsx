@@ -127,56 +127,58 @@ const MiningResourceManager = () => {
     const formattedTitle = title.toLowerCase().replace(/\s+/g, '-');
 
     return (
-      <div key={title} className="resource-table" id={formattedTitle}>
-        <div className="table-title">
+      <>
+        <div className="table-title" >
           {title.toUpperCase()}{" "}
           <button className="copy-btn"  onClick={() => onCopyButtonClick(title)}>
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </button>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Resource Name</th>
-              <th>Measurement Unit</th>
-              <th>Resource Type</th>
-              <th>WareHouse</th>
-              <th>Order Quantity</th>
-              <th>Supplier</th>
-              <th>Supplier Number</th>
-              <th>Arrival Time</th>
-              <th>Cost Per Item</th>
-              <th>Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              <td>{item.name}</td>
-              <td>{item.unit_of_measure}</td>
-              <td>{item.resource_type}</td>
-              <td>{item.tbms}</td>
-              <td>{item.qty_per_ring}</td>
-              <td>{item.vendor}</td>
-              <td>{item.vendor_product_no}</td>
-              <td>{item.lead_time_weeks}</td>
-              <td>$ {item.unit_cost}</td>
-              <td>
-                <button className="edit-btn" onClick={() => handleEdit(item)}>
-                  {/* <FontAwesomeIcon icon={faEdit} /> */}
-                  ✎
-                </button>
-                <button className="delete-btn" onClick={() => handleDelete(item.id)}>
-                  {/* <FontAwesomeIcon icon={faTrashCan} /> */}
-                  ❌ 
-                </button>
-              </td>
-            </tr>
-          ))}
+        <div key={title} className="resource-table" id={formattedTitle}>
+          <table>
+            <thead>
+              <tr>
+                <th>Resource Name</th>
+                <th>Measurement Unit</th>
+                <th>Resource Type</th>
+                <th>WareHouse</th>
+                <th>Order Quantity</th>
+                <th>Supplier</th>
+                <th>Supplier Number</th>
+                <th>Arrival Time</th>
+                <th>Cost Per Item</th>
+                <th>Edit/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            {data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.unit_of_measure}</td>
+                <td>{item.resource_type}</td>
+                <td>{item.tbms}</td>
+                <td>{item.qty_per_ring}</td>
+                <td>{item.vendor}</td>
+                <td>{item.vendor_product_no}</td>
+                <td>{item.lead_time_weeks}</td>
+                <td>$ {item.unit_cost}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => handleEdit(item)}>
+                    {/* <FontAwesomeIcon icon={faEdit} /> */}
+                    ✎
+                  </button>
+                  <button className="delete-btn" onClick={() => handleDelete(item.id)}>
+                    {/* <FontAwesomeIcon icon={faTrashCan} /> */}
+                    ❌ 
+                  </button>
+                </td>
+              </tr>
+            ))}
 
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      </>
     );
   };
 

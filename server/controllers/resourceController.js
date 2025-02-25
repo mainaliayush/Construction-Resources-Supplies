@@ -3,8 +3,8 @@ import pool from "../config/db.js";
 export const addResource = async (req, res) => {
     try {
 
-        // console.log("Received Data:", req.body); 
-        // console.log("Received File:", req.file); 
+        console.log("Received Data:", req.body); 
+        console.log("Received File:", req.file); 
 
         const { name, partNumber, resourceType, resourceSubType, tbms, subsystem, unitOfMeasure, qtyPerRing, isQuantized, manualOrderQty, parentAssembly, qtyPerAssembly, vendor, vendorProductNumber, unitCost, leadTime, description } = req.body;
         const imagePath = req.file ? req.file.path : null;

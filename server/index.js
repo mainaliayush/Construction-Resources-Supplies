@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import multer from 'multer'; 
 import pool from './config/db.js';
+import { upload } from './controller.js'; // Import upload configuration
 
 import resourceRoutes from './routes/resourceRoutes.js';
 import inventoryRoutes from './routes/inventoryRoutes.js';
@@ -19,7 +20,16 @@ server.use(cors({
 server.use(express.json());
 server.use(express.urlencoded({ extended: true })); 
 
-const upload = multer({ dest: "uploads/" }); 
+server.post('/upload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  
+  res.json({
+    message: 'File uploaded successfully!',
+    file: req.file,
+  });
+});
 
 server.get('/test-db', async (req, res) => {
   try {
@@ -37,7 +47,6 @@ server.get('/', (req, res) => {
 server.use("/uploads", express.static("uploads"));
 server.use('/resources', resourceRoutes);
 server.use('/inventory', inventoryRoutes);
-
 
 server.listen(PORT, () => {
   console.log(`✅ Server running at: http://localhost:${PORT}!!`);

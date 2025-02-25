@@ -1,23 +1,10 @@
 import pool from "../config/db.js";
-import multer from "multer";
-import path from "path";
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); 
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-export const upload = multer({ storage });
 
 export const addResource = async (req, res) => {
     try {
 
-        console.log("Received Data:", req.body); 
-        console.log("Received File:", req.file); 
+        // console.log("Received Data:", req.body); 
+        // console.log("Received File:", req.file); 
 
         const { name, partNumber, resourceType, resourceSubType, tbms, subsystem, unitOfMeasure, qtyPerRing, isQuantized, manualOrderQty, parentAssembly, qtyPerAssembly, vendor, vendorProductNumber, unitCost, leadTime, description } = req.body;
         const imagePath = req.file ? req.file.path : null;

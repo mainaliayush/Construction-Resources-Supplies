@@ -16,7 +16,6 @@ server.use(cors({
   origin: '*', 
 }));
 
-
 server.use(express.json());
 server.use(express.urlencoded({ extended: true })); 
 

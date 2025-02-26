@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
 
 export const upload = multer({ storage });
 
+
 export const addResource = async (req, res) => {
     try {
 
@@ -57,8 +58,22 @@ export const getAllResources = async (req, res) => {
     }
   };
 
-export const getResourceById = (req, res) => {
-    // Get resource by ID
+export const getResourceById = async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const query = "SELECT * FROM resources WHERE id = $1";
+    const result = await pool.query(query, [id]);
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error fetching resource:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 export const deleteResourceById = async (req, res) => {
